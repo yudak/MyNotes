@@ -1,0 +1,15 @@
+<div *ngIf="!editMode" class="note">
+{{note.text}}
+</div>
+<div *ngIf="editMode" class="note">
+    <textarea type="text" placeholder="Upadte note" [(ngModel)]="newText"  class="input"></textarea>
+  </div>
+<div class="Date">
+   {{note.Create()}}
+</div>
+
+<div class="actions">
+    <button *ngIf="!editMode" class="btn btn-raised  center"(click)="editMode=true" >Edit Note</button>
+    <button *ngIf="editMode" class="btn btn-raised  center"(click)="update()" >Update</button>
+    <button class="btn btn-raised  center"(click)="delete()" >Delete</button>
+</div>
