@@ -1,35 +1,23 @@
 import { Component } from '@angular/core';
 import { Note } from './Note';
+import { NoteBookService } from './note-book.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [NoteBookService]
 })
 export class AppComponent {
-    newNote ;
+  myNotes: any;
+
+
+
   
-    Notes:Note[] = [];
-    ShowList = false;
-  
-    constructor(){
+    constructor(noteBook: NoteBookService){
+      noteBook.NoteList.subscribe(Notes => this.myNotes = Notes )
       
     }
   
-    SaveNote(){
-      this.ShowList = true;
-      this.Notes.push(new Note(this.newNote))
-      this.newNote = "";
-    }
-  
-    RemoveNote(noteToDelete:Note){
-      const index: number = this.Notes.indexOf(noteToDelete)
-      this.Notes.splice(index,1)
-    }
-    
-  
-    UpdateNote(noteToUpdat,text){
-      const index: number = this.Notes.indexOf(noteToUpdat)
-      this.Notes[index].text = text;
-    }
+
 }

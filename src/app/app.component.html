@@ -1,13 +1,7 @@
-<div>
-  <textarea type="text" placeholder="Insert new note" [(ngModel)]="newNote"  class="input"></textarea>
-</div>
-
-<div>
-  <button class="btn btn-raised  center"(click)="SaveNote()" >Save New Note</button>
-</div>
 
 
-<div *ngIf="ShowList">
-    <app-note *ngFor="let note of Notes" [note]="note" (remove)="RemoveNote(note)" (updateNote)="UpdateNote(note,$event)" ></app-note>
+<new-note></new-note>
+<div *ngIf="myNotes">
+    <app-note *ngFor="let note of myNotes" [note]="note"  ></app-note>
 </div>
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from '../Note';
+import { NoteBookService } from '../note-book.service';
 
 @Component({
   selector: 'app-note',
@@ -9,24 +10,22 @@ import { Note } from '../Note';
 export class NoteComponent implements OnInit {
 
   @Input() note:Note;
-  @Output() remove  =  new EventEmitter<any>();
-  @Output() updateNote  =  new EventEmitter<any>();
   editMode = false;
   newText;
 
-  constructor() { }
+  constructor(public noteBook:NoteBookService) { }
 
   ngOnInit() {
     this.newText = this.note.text;
   }
 
   update(){
-    this.updateNote.next(this.newText)
     this.editMode = false;
+    this.noteBook.UpdateNote(this.note,this.newText);
   }
 
   delete(){
-    this.remove.emit();
+    this.noteBook.RemoveNote(this.note);
   }
 
 }

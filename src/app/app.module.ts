@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NoteComponent } from './note/note.component';
+import { NewNoteComponent } from './new-note/new-note.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NoteComponent
+    NoteComponent,
+    NewNoteComponent
   ],
   imports: [
     BrowserModule,
